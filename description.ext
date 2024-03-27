@@ -158,6 +158,10 @@ use_paradigm_init = 1;
 
 // VN HAM init
 #include "config\init.hpp"
+
+// EnableGPS
+enableGPS = 1;
+
 // CODELOCK
 #include "itsAebian\CodeLock\dialog\nhcl_defines.hpp"
 #include "itsAebian\CodeLock\dialog\nhcl_control.hpp"
