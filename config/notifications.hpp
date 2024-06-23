@@ -1,3 +1,14 @@
+
+#define NOTIFY_COLOR_BLACK {0,0,0,1}
+#define NOTIFY_COLOR_WHITE {1,1,1,1}
+#define NOTIFY_COLOR_WHITE_DULL {0.9,0.9,0.9,1}
+#define NOTIFY_COLOR_ORANGE {0.8,0.5,0,1}
+#define NOTIFY_COLOR_RED {0.8,0.06,0,1}
+#define NOTIFY_COLOR_RED_HEAVY {1,0.3,0.2,1}
+#define NOTIFY_COLOR_GREEN {0.7,1,0.3,1}
+#define NOTIFY_COLOR_GREEN_HEAVY {0,1,0,0.6}
+
+
 class CfgNotifications
 {
 	#include "..\paradigm\Client\configs\notifications.hpp"
@@ -133,7 +144,7 @@ class CfgNotifications
 	class TrainingFailedOneTraitPerTeam
 	{
 		title = $STR_vn_mf_notification_title_training;
-		description = $STR_vn_mf_onetraitperteam;
+		description = "%1 is limited to %2 player(s) with this role and %3 player(s) already have it.";
 		priority = 8;
 
 		color[] = {1,0.3,0.2,1};
@@ -144,6 +155,16 @@ class CfgNotifications
 	{
 		title = $STR_vn_mf_notification_title_training;
 		description = $STR_vn_mf_onetraitperplayer;
+		priority = 8;
+
+		color[] = {1,0.3,0.2,1};
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+	};
+
+	class TrainingFailedTeamNotAllowedTrait
+	{
+		title = $STR_vn_mf_notification_title_training;
+		description = "%1 is not allowed to select this role.";
 		priority = 8;
 
 		color[] = {1,0.3,0.2,1};
@@ -198,7 +219,7 @@ class CfgNotifications
 	class NoExplosives 
 	{
 		title = "No Explosives";
-		description = "You need a breaching charge, satchel, or INC Grenade!";
+		description = "Please equip a satchel or breaching charge!";
 		priority = 8;
 		color[] = {1,0,0,1};
 		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
@@ -230,35 +251,7 @@ class CfgNotifications
 		color[] = {0.7,1,0.3,1};
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
 	};
-	// NEW UNDERWATER SALVAGE ACTION 
-	class SALVAGEStart
-	{
-		title = "$alvage Started";
-		description = "Planting $alvage Charge...";
-		priority = 8;
-		color[] = {0.7,1,0.3,1};
-		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconCreated_ca.paa";
-	};
 
-	class SALVAGEFailed
-	{
-		title = "$alvage Failed";
-		description = "You need explosives training and a $alvage kit!";
-		priority = 8;
-		color[] = {1,0,0,1};
-		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
-	};
-
-	class SALVAGESuccess
-	{
-		title = "$alvage Charge Set";
-		description = "GET CLEAR 30 SECONDS!";
-		priority = 8;
-		duration = 10;
-		color[] = {1,0,0,1};
-		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
-	};
-	
 	class FireInTheHole
 	{
 		title = "Satchel Charge Set";
@@ -333,12 +326,35 @@ class CfgNotifications
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
 	};
 
+	class CommsEnabled
+	{
+		title = "Comms";
+		description = "Enabled/Switched ::: %1";
+		sound = "";
+		soundClose = "";
+		priority = 9;
+		duration = 0.8;
+		color[] = NOTIFY_COLOR_WHITE_DULL;
+		iconPicture = "\A3\ui_f\data\map\markers\military\pickup_CA.paa";
+	};
+
+	class CommsDisabled : CommsEnabled
+	{
+		title = "Comms";
+		description = "Disabled ::: %1";
+		color[] = NOTIFY_COLOR_BLACK;
+		iconPicture = "\A3\ui_f\data\map\markers\military\pickup_CA.paa";
+	};
+
 	class AdminLog
 	{
 		title = $STR_vn_mf_notification_title_admin_log;
 		description = "%1";
-		priority = 8;
-		duration = 10;
+		// @dijksterhuis: Reduced priority because there are so many notifications
+		priority = 1;
+		sound = ""; // testing
+		soundClose = "";
+		duration = 3;
 		color[] = {0,0.8,0.8,1};
 		iconPicture = "\A3\ui_f\data\Map\Markers\Military\warning_ca.paa";
 	};

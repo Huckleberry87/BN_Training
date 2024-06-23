@@ -27,6 +27,11 @@ if(_tunnel isEqualTo 0)then {_tunnelAlpha=0};
 		_tunnelMarker setMarkerText "Tunnel";
 		_tunnelMarker setMarkerAlpha 0;
 		
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialTunnel_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
 		private _vehicles = _createdThings select 0;
 		{
 			//Disable weapon dissassembly - statics don't get deleted properly when disassembled, so it breaks the site/mission.
@@ -58,6 +63,7 @@ if(_tunnel isEqualTo 0)then {_tunnelAlpha=0};
 
 		_siteStore setVariable ["markers", [_tunnelMarker]];
 		_siteStore setVariable ["tunnels", _tunnels];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["vehicles", _vehicles]; 
 		_siteStore setVariable ["units", (_createdThings select 1)]; 
 		_siteStore setVariable ["groups", _groups];
@@ -77,17 +83,6 @@ if(_tunnel isEqualTo 0)then {_tunnelAlpha=0};
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		{
-			deleteVehicle _x;
-		} forEach ((_siteStore getVariable "vehicles") + (_siteStore getVariable "units"));
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

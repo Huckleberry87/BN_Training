@@ -46,7 +46,7 @@ if(_destinationName isEqualTo "satansangels_base") then
 remoteExecCall ["vn_mf_fnc_display_location_time",_player];
 if(_destinationName isEqualTo "rappel_top_base") then 
 {
-  _player setPosATL [18256.8,5278.29,31.828];
+  _player setPosATL [18256.8,5278.29,34];
 } else {
   _player setPos _newLocation;
 };

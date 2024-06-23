@@ -32,7 +32,7 @@ params ["_pos"];
 		missionNamespace getVariable ["current_factory", _siteStore];
 
 		private _factoryObjects = [_spawnPos] call vn_mf_fnc_create_factory_buildings;
-		private _intel = _factoryObjects select {typeOf _x == "Land_Map_unfolded_Malden_F"};
+		private _intel = _factoryObjects select {typeOf _x == "Land_Map_unfolded_Malden_F" || typeOf _x == "vn_b_prop_cabinet_02" };
 		missionNamespace setVariable ["factory_intel", _intel];
 		missionNamespace setVariable ["factoryPosition", _pos];
 
@@ -45,6 +45,7 @@ params ["_pos"];
 		
 		private _objectTypesForDynamicSim = [
 			"Land_Map_unfolded_Malden_F",
+			"vn_b_prop_cabinet_02",
 			"Land_vn_wf_vehicle_service_point_east",
 			"Land_vn_fuel_tank_stairs",
 			"Land_Net_Fence_Gate_F"
@@ -55,10 +56,19 @@ params ["_pos"];
 			(_x isKindOf "StaticWeapon" || _x isKindOf "Building" || _x isKindOf "House" || _x isKindOf "LandVehicle" || _x isKindOf "Air")
 		};
 
-		_factoryObjects apply {
-			if(typeOf _x in _objectTypesToDestroy + _objectTypesForDynamicSim || [_x] call _fnc_dynSimKindOfChecker) then {
-				[_x, true] call para_s_fnc_enable_dynamic_sim;
-			};
+		// normalise z-coord and up vector for vehicles, static weapons, weapon creates and the intel associated objects
+		_factoryObjects select {typeOf _x in _objectTypesToDestroy || _x isKindOf "StaticWeapon" || _x isKindOf "LandVehicle"} apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+		};
+
+		// keep an eye on anything we definitely don't want to fall under the floor
+		_factoryObjects select {typeOf _x in _objectTypesToDestroy || _x isKindOf "StaticWeapon"} apply {
+			[_x] call vn_mf_fnc_sites_object_zfixer_add_object;
+		};
+
+		// enable dynamic sim for a bunch of stuff
+		_factoryObjects select {typeOf _x in _objectTypesToDestroy + _objectTypesForDynamicSim || [_x] call _fnc_dynSimKindOfChecker} apply {
+			[_x, true] call para_s_fnc_enable_dynamic_sim;
 		};
 
 		_factoryObjects apply {
@@ -74,6 +84,11 @@ params ["_pos"];
 		_factoryMarker setMarkerType "o_Ordnance";
 		_factoryMarker setMarkerText "Factory";
 		_factoryMarker setMarkerAlpha 0;
+
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialFactory_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
 
 		private _factoryRespawnMarker = createMarker [format ["dc_respawn_adhoc_%1", _siteId], _markerPos];
 		_factoryRespawnMarker setMarkerType "o_Ordnance";
@@ -93,6 +108,7 @@ params ["_pos"];
 
 		_siteStore setVariable ["aiObjectives", _objectives];
 		_siteStore setVariable ["markers", [_factoryMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["staticGuns", _factoryObjects select {_x isKindOf "StaticWeapon"}];
 		_siteStore setVariable ["vehicles", _factoryObjects]; 
 		_siteStore setVariable ["objectsToDestroy", _factoryObjects select {typeOf _x in _objectTypesToDestroy}];
@@ -105,19 +121,11 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-
-		(_siteStore getVariable "objectsToDestroy" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		// release AI from associated objectives
-		// note -- AI can vanish in front of players when this is executed
-		_siteStore getVariable "aiObjectives" apply {[_x] call para_s_fnc_ai_obj_finish_objective};
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

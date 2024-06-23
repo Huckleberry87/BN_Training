@@ -89,7 +89,11 @@ call vn_mf_fnc_active_init;
 uiSleep 0.4;
 progressLoadingScreen 0.5;
 
-["action_manager", vn_mf_fnc_action_init, [], 5] call para_g_fnc_scheduler_add_job;
+// @dijksterhuis: we should only need to call this once? -- when the player joins?
+// only reason to keep adding actions after attach to player would be if the actions
+// are removed from player object.
+call vn_mf_fnc_action_init;
+// ["action_manager", vn_mf_fnc_action_init, [], 5] call para_g_fnc_scheduler_add_job;
 
 [parseText format["<t font='tt2020base_vn' color='#F5F2D0'>%1</t>",localize "STR_vn_mf_loading11"]] call vn_mf_fnc_update_loading_screen;
 
@@ -124,7 +128,7 @@ if (side player == east) then
 };
 
 if (_lastTeamName == "SatansAngels" && toLower(worldName) in ["cam_lao_nam"]) then {
-	player setPosATL [20153.68,68.175,124];
+	player setPosATL [20152.6,67.6535,123.54];
 } else {
 	player setPos getMarkerPos _respawnMarker;
 };
@@ -134,9 +138,6 @@ progressLoadingScreen 1.0;
 //Setup teleporters
 call vn_mf_fnc_action_teleport;
 
-call vn_mf_fnc_apply_unit_traits;
-
-call vn_mf_fnc_action_trait;
 [parseText format["<t font='tt2020base_vn' color='#F5F2D0'>%1</t>",localize "STR_vn_mf_loading10"]] call vn_mf_fnc_update_loading_screen;
 
 // apply health effects
@@ -250,7 +251,9 @@ call vn_mf_fnc_display_location_time;
 };
 
 // Marker Discovery
-[] call vn_mf_fnc_sites_subsystem_client_init;
+// @dijksterhuis: Disabled in favour of radio wiretap feature.
+// [] call vn_mf_fnc_sites_subsystem_client_init;
+
 // Tutorial System
 [] call vn_mf_fnc_tutorial_subsystem_client_init;
 

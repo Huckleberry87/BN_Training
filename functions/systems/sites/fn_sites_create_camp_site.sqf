@@ -57,7 +57,12 @@ params ["_pos"];
 		];
 
 		private _objectsToDestroy = _campObjs select {typeOf _x in _campObjectiveTypes};
-		_objectsToDestroy apply {[_x, true] call para_s_fnc_enable_dynamic_sim};
+
+		_objectsToDestroy apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+			[_x] call vn_mf_fnc_sites_object_zfixer_add_object;
+			[_x, true] call para_s_fnc_enable_dynamic_sim
+		};
 
 		private _markerPos = _spawnPos getPos [10 + random 20, random 360];
 		private _campMarker = createMarker [format ["Camp_%1", _siteId], _markerPos];
@@ -65,8 +70,15 @@ params ["_pos"];
 		_campMarker setMarkerText "Camp";
 		_campMarker setMarkerAlpha 0;
 
-		private _staticWeapons = _campObjs select {_x isKindOf "StaticWeapon"};
-		_staticWeapons apply {[_x, true] call para_s_fnc_enable_dynamic_sim};
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialCamp_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
+		// Building Kind of includes bushes and the DC wallfoliage fences
+		_campObjs select {_x isKindOf "Building"} apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+		};
 
 		// 30% chance to spawn an ambush
 		// @dijksterhuis: we don't assign AI to every camp site to save AI budget on other assignments
@@ -101,6 +113,7 @@ params ["_pos"];
 		};
 
 		_siteStore setVariable ["markers", [_campMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["objectsToDestroy", _objectsToDestroy];
 	},
 	//Teardown condition check code
@@ -111,24 +124,11 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-		//Teardown when all guns destroyed
-		(_siteStore getVariable "objectsToDestroy" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		private _objectsToDestroy = _siteStore getVariable "objectsToDestroy";
-		{
-			deleteVehicle _x;
-		} forEach _objectsToDestroy;
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

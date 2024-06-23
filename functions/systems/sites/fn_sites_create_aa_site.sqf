@@ -36,6 +36,8 @@ params ["_pos"];
 		vn_site_objects append _objects;
 
 		_objects apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+			[_x] call vn_mf_fnc_sites_object_zfixer_add_object;
 			[_x, true] call para_s_fnc_enable_dynamic_sim;
 			createVehicleCrew _x;
 		};
@@ -47,8 +49,14 @@ params ["_pos"];
 		_aaMarker setMarkerText "AA";
 		_aaMarker setMarkerAlpha 0;
 
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialAA_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
 		_siteStore setVariable ["aiObjectives", []];
 		_siteStore setVariable ["markers", [_aaMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["objectsToDestroy", _objects];
 	},
 	//Teardown condition check code
@@ -59,23 +67,13 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-		//Teardown when all guns destroyed
-		(_siteStore getVariable "objectsToDestroy" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		{
-			deleteVehicle _x;
-		} forEach ((_siteStore getVariable "objectsToDestroy"));
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		// delete the vehicle crew then teardown everything else
+		(_siteStore getVariable "objectsToDestroy") apply {deleteVehicleCrew _x};
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

@@ -10,7 +10,7 @@ class CfgFunctions
 			file = "functions\core";
 			class apply_unit_traits {};
 			class change_player_stat {};
-//			class end_mission {};
+			class end_mission {};
 			class get_gamemode_value {};
 			class marker_init {};
 			class pow_init {};
@@ -62,6 +62,16 @@ class CfgFunctions
 			class is_team_full {};
 			class player_on_team {};
 			class update_channels {};
+		};
+
+		class core_teams_comms_switchers
+		{
+			file = "functions\core\teams\comms_switchers";
+			class teams_comms_switchers_onoff_air {};
+			class teams_comms_switchers_onoff_cff {};
+			class teams_comms_switchers_onoff_ground {};
+			class teams_comms_switchers_onoff {};
+			class teams_comms_switchers_off_all {};
 		};
 
 		class core_workarounds
@@ -158,11 +168,11 @@ class CfgFunctions
 		class system_actions {
 			file = "functions\systems\actions";
 			class action_init {};
+			class action_vehspawner_show_spawn_point {};
 			class action_destroy_respawn {};
 			class action_destroy_task {};
 			class action_gather_intel {};
 			class action_radiotap {};
-			class action_salvage {};  //ADDED FOR UNDERWATER SALVAGE
 			class action_capture_player {};
 			class action_arrest_player {};
 			class action_release_from_arrest_player {};
@@ -170,7 +180,6 @@ class CfgFunctions
 			class action_eat_food {};
 			class action_lower_flag {};
 			class action_reraise_flag {};
-
 		};
 
 		class system_actives {
@@ -270,8 +279,6 @@ class CfgFunctions
 			class sites_create_hq {};
 			class sites_create_factory {};
 			class sites_create_radar {};
-//			class sites_create_navy {};
-
 
 			// Composition and entity spawning
 			class create_aa_buildings {};
@@ -281,8 +288,7 @@ class CfgFunctions
 			class create_mortar_buildings {};
 			class create_radar_buildings {};
 			class create_tunnel_buildings {};
-//			class create_navy_buildings {};
-			
+
 			//Supporting functions
 			class sites_aa_reveal_targets {};
 
@@ -300,8 +306,25 @@ class CfgFunctions
 
 			class reveal_supply_line {};
 			class reveal_radiotap_nearest_sites {};
+			class sites_hide_unsafe_terrain_objects {};
 		};
-		
+
+		class system_sites_utils
+		{
+			file = "functions\systems\sites\utils";
+			class sites_utils_std_teardown {};
+			class sites_utils_std_check_teardown {};
+			class sites_utils_normalise_object_placement {};
+		}
+
+		class system_sites_object_zfixer
+		{
+			file = "functions\systems\sites\object_zfixer";
+			class sites_object_zfixer_init {};
+			class sites_object_zfixer_job {};
+			class sites_object_zfixer_add_object {};
+		}
+
 		class system_supplies {
 			file = "functions\systems\supplies";
 			class action_supplies {};
@@ -345,37 +368,65 @@ class CfgFunctions
 			class tutorial_subsystem_client_init {};
 		};
 
-		class system_vehicle_asset_manager
+		class system_vehicle_asset_manager_client
 		{
-			file = "functions\systems\vehicle_asset_manager";
-			class packageforslingloading {};
-			class veh_asset_add_package_wreck_action_local {};
+			file = "functions\systems\vehicle_asset_manager\client";
 			class veh_asset_add_package_underwater_wreck_action_local {};
+			class veh_asset_add_package_wreck_action_local {};
+			class veh_asset_describe_status {};
+			class veh_asset_finalise_spawn_point_setup_on_client {};
+			class veh_asset_remove_package_underwater_wreck_action_local {};
+			class veh_asset_remove_spawn_point_client {};
+			class veh_asset_request_vehicle_change_client {};
+			class veh_asset_setup_package_wreck_action_local {};
+			class veh_asset_update_spawn_point_data {};
+		};
+
+		class system_vehicle_asset_manager_global
+		{
+			file = "functions\systems\vehicle_asset_manager\global";
+			class veh_asset_can_change_vehicle {};
+			class veh_asset_get_spawn_point_info_from_config {};
+			class veh_asset_load_vehicle_configs {};
+		};
+
+		class system_vehicle_asset_manager_server_network
+		{
+			file = "functions\systems\vehicle_asset_manager\server\network";
+			class packageforslingloading {};
+			class veh_asset_handle_change_vehicle_request {};
+		};
+
+		class system_vehicle_asset_manager_server
+		{
+			file = "functions\systems\vehicle_asset_manager\server";
+			class veh_asset_3DEN_spawn_point {};
+			class veh_asset_add_spawn_point {};
 			class veh_asset_add_unlock_action {};
-			class veh_asset_add_vehicle {};
-			class veh_asset_get_by_id {};
-			class veh_asset_init_vehicle {};
-			class veh_asset_key {};
+			class veh_asset_assign_vehicle_to_spawn_point {};
+			class veh_asset_change_vehicle {};
+			class veh_asset_create_spawn_point_id {};
 			class veh_asset_job {};
 			class veh_asset_lock_vehicle {};
 			class veh_asset_marker_create {};
 			class veh_asset_marker_delete {};
 			class veh_asset_marker_update_position {};
 			class veh_asset_package_wreck {};
-			class veh_asset_remove_package_underwater_wreck_action_local {};
-			class veh_asset_remove_vehicle {};
+			class veh_asset_process_spawn_point {};
+			class veh_asset_remove_spawn_point {};
 			class veh_asset_respawn {};
+			class veh_asset_respawn_job {};
 			class veh_asset_set_active {};
 			class veh_asset_set_disabled {};
+			class veh_asset_set_global_variable {};
+			class veh_asset_set_global_variables {};
 			class veh_asset_set_idle {};
-			class veh_asset_setup_package_wreck_action {};
-			class veh_asset_setup_package_wreck_action_local {};
 			class veh_asset_set_repairing {};
 			class veh_asset_set_respawning {};
 			class veh_asset_set_wrecked {};
+			class veh_asset_setup_package_wreck_action {};
 			class veh_asset_subsystem_init {};
 			class veh_asset_unlock_vehicle {};
-			class veh_asset_respawn_job {};
 		};
 
 		class system_vehicle_creation_detection

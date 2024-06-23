@@ -15,4 +15,4 @@
 */
 
 
-player action ["SwitchWeapon", player, player, -1];
+player action ["SwitchWeapon", player, player, 100];

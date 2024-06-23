@@ -1,15 +1,10 @@
-// ADDED NEW STYLE CRATES TO SUPPLY OFFICER/ PICK UP-PLACE
-//ADDED NEW VEHICLES TO LOGISTIC
-
-
-
 class vn_logistics
 {
     class vehicle_data
     {
 	class vn_defaults_large
 	{
-		inventory_max_weight = 1500;
+		inventory_max_weight = 600;
 		inventory_max_size = 7.5;
 	};
 	class vn_defaults_medium
@@ -19,160 +14,14 @@ class vn_logistics
 	};
 	class vn_defaults_small
 	{
-		inventory_max_weight = 200;
-		inventory_max_size = 3;
+		inventory_max_weight = 100;
+		inventory_max_size = 2.5;
 	};
 	class vn_defaults_tiny
 	{
-		inventory_max_weight = 100;
+		inventory_max_weight = 50;
 		inventory_max_size = 1;
 	};
-	//MODERN HELICOPTERS
-	class ej_UH60M_NATO : vn_defaults_small {};
-	class CUP_B_UH60M_US : vn_defaults_small {};
-	class ej_MH60L : vn_defaults_small {};
-	class RHS_UH1Y_d : vn_defaults_medium {};
-	
-	//MODERN UTILITY GROUND
-	class CUP_O_Hilux_unarmed_TK_CIV_White : vn_defaults_medium {};
-	class CUP_B_TowingTractor_NATO : vn_defaults_small {};
-	class B_LSV_01_unarmed_F : vn_defaults_small {};
-	class rhsusf_M1230a1_usarmy_wd : vn_defaults_small {};
-	class C_Van_02_medevac_F : vn_defaults_small {};
-	class C_IDAP_Van_02_medevac_F : vn_defaults_small {};
-	class C_Offroad_01_repair_F : vn_defaults_small {};
-	class C_IDAP_Offroad_01_F : vn_defaults_small {};
-	class C_Offroad_01_comms_F : vn_defaults_small {};
-	class rhsusf_m998_w_2dr_fulltop : vn_defaults_small {};
-	class rhsusf_m998_w_2dr : vn_defaults_small {};
-	class rhsusf_m998_w_4dr : vn_defaults_small {};
-	class C_Van_02_vehicle_F : vn_defaults_small {};
-	class B_Quadbike_01_F : vn_defaults_small {};
-	class CUP_B_BAF_Coyote_L2A1_D : vn_defaults_small {};
-	class CUP_B_Wolfhound_LMG_GB_D : vn_defaults_small {};
-	class CUP_B_Jackal2_GMG_GB_D : vn_defaults_small {};
-	class ADF_APC_tracked_01_cannon_F : vn_defaults_small {};
-	class ADF_LSV_01_armed_F : vn_defaults_small {};
-	class ADF_MRAP_01_hmg_F : vn_defaults_small {};
-	class CUP_B_M1126_ICV_M2_Desert : vn_defaults_small {};
-	class CUP_B_MTVR_HIL : vn_defaults_small {};
-	class CUP_B_M151_HIL : vn_defaults_small {};
-	class CUP_B_M151_M2_HIL : vn_defaults_small {};
-	class CUP_B_Boxer_HMG_HIL : vn_defaults_small {};
-	class CUP_B_Boxer_GMG_HIL : vn_defaults_small {};
-	class CUP_B_Boxer_Empty_HIL : vn_defaults_small {};
-	class rhsusf_M142_usarmy_D : vn_defaults_small {};
-	class rhsusf_stryker_m1132_m2_d : vn_defaults_small {};
-	class RHS_M6 : vn_defaults_small {};
-	class RHS_M2A3_BUSKIII : vn_defaults_small {};
-	class rhsusf_m109d_usarmy : vn_defaults_small {};
-	class CUP_B_M1A2C_TUSK_II_Desert_US_Army : vn_defaults_small {};
-	class rhsusf_m1a2sep1tuskiid_usarmy : vn_defaults_small {};
-	class CUP_B_M2A3Bradley_USA_D : vn_defaults_small {};
-	class CUP_B_M7Bradley_USA_D : vn_defaults_small {};
-	class rhsusf_m113d_usarmy_medical : vn_defaults_small {};
-	class rhsusf_m113d_usarmy_M240 : vn_defaults_small {};
-	class rhsusf_stryker_m1126_mk19_d : vn_defaults_small {};
-	class rhsusf_stryker_m1126_m2_d : vn_defaults_small {};
-	class CUP_B_AAV_USMC : vn_defaults_small {};
-	class CUP_B_RG31_Mk19_USMC : vn_defaults_small {};
-	class CUP_B_RG31E_M2_USMC : vn_defaults_small {};
-	class CUP_B_nM1025_Mk19_USMC_DES : vn_defaults_small {};
-	class CUP_B_M1151_Deploy_DSRT_USMC : vn_defaults_small {};
-	class CUP_B_nM1025_M2_USMC_DES : vn_defaults_small {};
-	class CUP_B_M1151_Mk19_DSRT_USMC : vn_defaults_small {};
-	class CUP_B_LAV25_desert_USMC : vn_defaults_small {};
-	class B_MRAP_01_gmg_F : vn_defaults_small {};
-	class B_MRAP_01_hmg_F : vn_defaults_small {};
-	class B_LSV_01_AT_F : vn_defaults_small {};
-	class B_LSV_01_armed_F : vn_defaults_small {};
-	class rhsgref_hidf_m998_4dr : vn_defaults_small {};
-	class rhsgref_hidf_m1025_mk19 : vn_defaults_small {};
-	class rhs_uh1h_hidf : vn_defaults_small {};
-	class CUP_O_T72_CSAT : vn_defaults_small {};
-	class CUP_O_T55_CSAT : vn_defaults_small {};
-	class CUP_O_BMP2_CSAT : vn_defaults_small {};
-	class CUP_O_BRDM2_HQ_CSAT : vn_defaults_small {};
-	class CUP_O_BTR80A_CSAT : vn_defaults_small {};
-	class O_MRAP_02_gmg_F : vn_defaults_small {};
-	class CUP_O_UAZ_MG_CSAT : vn_defaults_small {};
-	class CUP_O_UAZ_SPG9_CSAT : vn_defaults_small {};
-	class O_LSV_02_armed_F : vn_defaults_small {};
-	class O_LSV_02_AT_F : vn_defaults_small {};
-	class B_G_Offroad_01_armed_F : vn_defaults_small {};
-	class B_GEN_Van_02_vehicle_F : vn_defaults_small {};
-	class CUP_B_M1030_USA : vn_defaults_tiny {};
-	class rhsusf_M1220_M2_usarmy_d : vn_defaults_small {};
-	class rhsusf_M1220_M153_M2_usarmy_d : vn_defaults_small {};
-	class rhsusf_M1238A1_M2_socom_d : vn_defaults_small {};
-	class rhsusf_mrzr4_d : vn_defaults_tiny {};
-	class CUP_B_nM1025_SOV_M2_USMC_DES : vn_defaults_small {};
-	class CUP_B_LAV25M240_desert_USMC : vn_defaults_small {};
-	class rhsusf_m1240a1_m240_uik_usarmy_d : vn_defaults_small {};
-	class rhsusf_m1240a1_m2_uik_usarmy_d : vn_defaults_small {};
-	class rhsusf_M1237_M2_usarmy_d : vn_defaults_small {};
-	
-	
-	//MODERN SHIPS AND BOATS
-	class B_Boat_Armed_01_minigun_F : vn_defaults_small {};
-	class B_Boat_Transport_01_F : vn_defaults_small {};
-	class B_SDV_01_F : vn_defaults_small {};
-	class CUP_B_RHIB2Turret_USMC : vn_defaults_small {};
-	class CUP_B_RHIB_USMC : vn_defaults_small {};
-	
-	
-	//LARGE SHIPS
-	class CUP_B_LCU1600_USMC : vn_defaults_medium {};
-	
-	//MODERN URILITY AIR
-	class CUP_C_Merlin_HC3_CIV_Lux : vn_defaults_medium {};
-	class C_Heli_Light_01_civil_F : vn_defaults_small {};
-	class CUP_C_412_Luxury : vn_defaults_small {};
-	class RHS_MELB_AH6M : vn_defaults_small {};
-	class RHS_UH60M_MEV : vn_defaults_medium {};
-	class B_Heli_Transport_01_F : vn_defaults_small {};
-	class CUP_B_MH6M_USA : vn_defaults_small {};
-	class CUP_B_MH6M_OBS_USA : vn_defaults_small {};
-	class CUP_C_412_Sheriff : vn_defaults_small {};
-	class ADF_Heli_Transport_01_F : vn_defaults_small {};
-	class B_Heli_Light_01_F : vn_defaults_small {};
-	class CUP_B_Mi17_CDF : vn_defaults_medium {};
-	class CUP_B_UH60S_USN : vn_defaults_medium {};
-	class CUP_B_MH60S_USMC : vn_defaults_medium {};
-	class CUP_B_Mi17_VIV_CDF : vn_defaults_medium {};
-	class O_Heli_Transport_04_covered_F : vn_defaults_small {};
-	class O_Heli_Attack_02_dynamicLoadout_F : vn_defaults_small {};
-	class CUP_O_Ka60_GL_Hex_CSAT : vn_defaults_small {};
-	class O_Heli_Light_02_dynamicLoadout_F : vn_defaults_small {};
-	class CUP_B_MV22_USMC : vn_defaults_medium {};
-	class ej_MH80 : vn_defaults_medium {};
-	class RHS_MELB_MH6M : vn_defaults_medium {};
-	class ej_MH60M : vn_defaults_medium {};
-	class ghosthawk_CG_Blu : vn_defaults_medium {};
-	class RHS_UH60M_MEV2_d : vn_defaults_medium {};
-	class RHS_UH60M_d : vn_defaults_medium {};
-	class MEF_USMC_Ghosthawk : vn_defaults_medium {};
-	class mohawk_CG : vn_defaults_large {};
-	
-	//HEAVY GROUND TRANSPORT
-	class rhsusf_M977A4_AMMO_BKIT_usarmy_wd : vn_defaults_medium {};
-	class rhsusf_M977A4_REPAIR_BKIT_usarmy_wd : vn_defaults_medium {};
-	class B_T_Truck_01_fuel_F : vn_defaults_medium {};
-	class rhsusf_stryker_m1134_wd : vn_defaults_medium {};
-	class rhsusf_m113d_usarmy : vn_defaults_medium {};
-	class B_Truck_01_box_F : vn_defaults_large {};
-	class B_Truck_01_cargo_F : vn_defaults_large {};
-	
-	//HEAVY AIR LIFT
-	class CUP_B_MH47E_USA : vn_defaults_large {};
-	class ADF_Heli_Transport_02a_F : vn_defaults_large {};
-	class CUP_B_CH47F_HIL : vn_defaults_large {};
-	class RHS_CH_47F_cargo : vn_defaults_large {};
-	class CUP_B_CH53E_USMC : vn_defaults_large {};
-	class USAF_C130J : vn_defaults_large {};
-	
-	
-	
 	//Jeeps + Small Cars
 	class vn_b_wheeled_m151_01 : vn_defaults_small {};
 	class vn_b_wheeled_m151_01_mp : vn_defaults_small {};
@@ -474,7 +323,7 @@ class vn_logistics
     class item_data
     {
 		//Building supplies crate
-        class Box_NATO_AmmoVeh_F
+        class vn_b_ammobox_supply_05
         {
             item_weight = 200;
             item_size = 2.5;
@@ -497,50 +346,20 @@ class vn_logistics
 		class vn_us_komex_small_03 : Land_Cargo10_brick_red_F {};
 
 		//Workshop supplies
-		class vn_b_ammobox_supply_06 {};
+		class vn_b_ammobox_supply_06 : vn_b_ammobox_supply_05 {};
 
 		//Sandbag supplies
-		class vn_b_ammobox_supply_10 {};
+		class vn_b_ammobox_supply_10 : vn_b_ammobox_supply_05 {};
 
 		//Small US ammo
-		class C_supplyCrate_F
+		class vn_b_ammobox_supply_04
 		{
 			item_weight = 50;
 			item_size = 1;
 			spawn_distance = 2;
 			rotation_offset = 0;
 		};
-		//MODERN LOGISTICS/MEDICAL/AMMO BOXES
-		class Box_NATO_Ammo_F
-		{
-			item_weight = 50;
-			item_size = 1;
-			spawn_distance = 2;
-			rotation_offset = 0;
-		};
-		class B_CargoNet_01_ammo_F
-		{
-			item_weight = 50;
-			item_size = 1;
-			spawn_distance = 2;
-			rotation_offset = 0;
-		};
-		class C_IDAP_supplyCrate_F
-		{
-			item_weight = 50;
-			item_size = 1;
-			spawn_distance = 2;
-			rotation_offset = 0;
-		};
-		class rhsusf_mags_crate 
-		{
-			item_weight = 50;
-			item_size = 5;
-			spawn_distance = 2;
-			rotation_offset = 0;
-		};
-		class HLC_SG510_ammobox : Box_NATO_Ammo_F {};
-	
+
 		//SOG ammo
 		class vn_b_ammobox_sog // ammo
         {
@@ -550,15 +369,14 @@ class vn_logistics
             rotation_offset = 0;
         };
 		//US Ammo
-		class vn_b_ammobox_supply_01 : Box_NATO_Ammo_F {};
-		
+		class vn_b_ammobox_supply_01 : vn_b_ammobox_sog {};
 		//Medical supplies
 		class vn_b_ammobox_supply_03 : vn_b_ammobox_sog {};
 		//Food supplies
 		class vn_b_ammobox_supply_02 : vn_b_ammobox_supply_03 {};
 
 		//Resupply Fuel/Repair/Ammo
-		class vn_b_ammobox_supply_07
+		class vn_b_ammobox_supply_07 : vn_b_ammobox_supply_05
 		{
 				item_weight = 400;
 				item_size = 10;
@@ -580,7 +398,6 @@ class vn_logistics
 		class vn_us_komex_medium_01 : B_Slingload_01_Cargo_F {};
 		class vn_us_komex_medium_02 : vn_us_komex_medium_01 {};
 		class vn_us_komex_medium_03 : vn_us_komex_medium_01 {};
-		class Land_MobileLandingPlatform_01_F : rhsusf_mags_crate {};
 
 		///////////////////
 		////  STATICS  ////
@@ -608,8 +425,7 @@ class vn_logistics
 			spawn_distance = 4;
 			rotation_offset = 0;
 		};
-		
-		class RHS_M119_D : vn_static_large {};
+
 		class vn_b_army_static_mortar_m2 : vn_static_tiny {};
 		class vn_b_army_static_mortar_m29 : vn_static_tiny {};
 		class vn_b_sf_static_mortar_m2 : vn_static_tiny {};
@@ -641,49 +457,41 @@ class vn_logistics
 		class vn_i_marines_static_m101_01 : vn_static_large {};
 		class vn_i_marines_static_m101_02 : vn_static_large {};
 
-		class vn_i_static_mortar_m2 : 	vn_b_army_static_mortar_m2 {};
-		class vn_i_static_mortar_m29 : 	vn_b_army_static_mortar_m29 {};
-		class vn_i_static_m1919a6 : 	vn_b_army_static_m1919a6 {};
-		class vn_i_static_m1919a4_low : 	vn_b_army_static_m1919a4_low {};
-		class vn_i_static_m1919a4_high :	vn_b_army_static_m1919a4_high {};
-		class vn_i_static_m2_low : 	vn_b_army_static_m2_low {};
-		class vn_i_static_m2_high : 	vn_b_army_static_m2_high {};
-		class vn_i_static_m60_low : 	vn_b_army_static_m60_low {};
-		class vn_i_static_m60_high : 	vn_b_army_static_m60_high {};
-		class vn_i_army_static_m45 : 	vn_b_army_static_m45 {};
+		class vn_i_static_mortar_m2: 	vn_b_army_static_mortar_m2 {};
+		class vn_i_static_mortar_m29: 	vn_b_army_static_mortar_m29 {};
+		class vn_i_static_m1919a6: 	vn_b_army_static_m1919a6 {};
+		class vn_i_static_m1919a4_low: 	vn_b_army_static_m1919a4_low {};
+		class vn_i_static_m1919a4_high:	vn_b_army_static_m1919a4_high {};
+		class vn_i_static_m2_low: 	vn_b_army_static_m2_low {};
+		class vn_i_static_m2_high: 	vn_b_army_static_m2_high {};
+		class vn_i_static_m60_low: 	vn_b_army_static_m60_low {};
+		class vn_i_static_m60_high: 	vn_b_army_static_m60_high {};
+		class vn_i_army_static_m45: 	vn_b_army_static_m45 {};
 
-		class vn_o_nva_static_rpd_high : 	vn_static_tiny {};
-		class vn_o_nva_static_dshkm_high_01 :	vn_static_tiny {};
-		class vn_o_nva_static_dshkm_high_02 : 	vn_static_tiny {};
-		class vn_o_nva_static_dshkm_low_01 :	vn_static_tiny {};
-		class vn_o_nva_static_dshkm_low_02 :	vn_static_tiny {};
-		class vn_o_nva_static_mortar_type53 : 	vn_static_tiny {};
-		class vn_o_nva_static_mortar_type63 : 	vn_static_tiny {};
+		class vn_o_nva_static_rpd_high: 	vn_static_tiny {};
+		class vn_o_nva_static_dshkm_high_01:	vn_static_tiny {};
+		class vn_o_nva_static_dshkm_high_02: 	vn_static_tiny {};
+		class vn_o_nva_static_dshkm_low_01:	vn_static_tiny {};
+		class vn_o_nva_static_dshkm_low_02:	vn_static_tiny {};
+		class vn_o_nva_static_mortar_type53: 	vn_static_tiny {};
+		class vn_o_nva_static_mortar_type63: 	vn_static_tiny {};
 
-		class vn_o_nva_navy_static_rpd_high : 		vn_static_tiny {};
-		class vn_o_nva_navy_static_dshkm_high_01 :	vn_static_tiny {};
+		class vn_o_nva_navy_static_rpd_high: 		vn_static_tiny {};
+		class vn_o_nva_navy_static_dshkm_high_01:	vn_static_tiny {};
 		class vn_o_nva_navy_static_dshkm_high_02: 	vn_static_tiny {};
-		class vn_o_nva_navy_static_dshkm_low_01 :	vn_static_tiny {};
-		class vn_o_nva_navy_static_dshkm_low_02 :	vn_static_tiny {};
-		class vn_o_nva_navy_static_mortar_type53 : 	vn_static_tiny {};
-		class vn_o_nva_navy_static_mortar_type63 : 	vn_static_tiny {};
+		class vn_o_nva_navy_static_dshkm_low_01:	vn_static_tiny {};
+		class vn_o_nva_navy_static_dshkm_low_02:	vn_static_tiny {};
+		class vn_o_nva_navy_static_mortar_type53: 	vn_static_tiny {};
+		class vn_o_nva_navy_static_mortar_type63: 	vn_static_tiny {};
 
-		class vn_o_vc_static_rpd_high : 		vn_static_tiny {};
-		class vn_o_vc_static_dp28_high : 	vn_static_tiny {};
-		class vn_o_vc_static_dshkm_high_01 :	vn_static_tiny {};
-		class vn_o_vc_static_dshkm_high_02 : 	vn_static_tiny {};
-		class vn_o_vc_static_dshkm_low_01 :	vn_static_tiny {};
-		class vn_o_vc_static_dshkm_low_02 :	vn_static_tiny {};
-		class vn_o_vc_static_mortar_type53 : 	vn_static_tiny {};
-		class vn_o_vc_static_mortar_type63 : 	vn_static_tiny {};
-		
-		//MODERN
-		class B_Boat_Transport_01_F : vn_static_large {};
-		class B_SDV_01_F : vn_static_large {};
-		class CUP_B_M1030_USA : vn_static_small {};
-		class B_Quadbike_01_F : vn_static_small {};
-	
-		
+		class vn_o_vc_static_rpd_high: 		vn_static_tiny {};
+		class vn_o_vc_static_dp28_high: 	vn_static_tiny {};
+		class vn_o_vc_static_dshkm_high_01:	vn_static_tiny {};
+		class vn_o_vc_static_dshkm_high_02: 	vn_static_tiny {};
+		class vn_o_vc_static_dshkm_low_01:	vn_static_tiny {};
+		class vn_o_vc_static_dshkm_low_02:	vn_static_tiny {};
+		class vn_o_vc_static_mortar_type53: 	vn_static_tiny {};
+		class vn_o_vc_static_mortar_type63: 	vn_static_tiny {};
 
     };
 };

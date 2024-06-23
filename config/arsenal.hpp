@@ -521,19 +521,6 @@ class vn_whitelisted_arsenal_loadouts
 			{"vn_m1_garand_t_mag",					{-1,0,-1,-1}},
 			{"vn_m1918_mag",						{-1,0,-1,-1}},
 			{"vn_m1918_t_mag",						{-1,0,-1,-1}},
-			
-			
-			
-////////////////IMMERSION CIGS/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-			{"murshun_cigs_lighter",				{ 0, 0, 0, 0}},
-			{"immersion_pops_poppack",				{ 0, 0, 0, 0}},
-			{"murshun_cigs_matches",				{ 0, 0, 0, 0}},
-			{"murshun_cigs_cigpack"	,				{ 0, 0, 0, 0}},
-			{"vn_b_item_cigs_01",					{ 0, 0, 0, 0}},			
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-
-
-		
 			//Food and Drink
 			{ "vn_prop_drink_01", 					{ 0, 0, 0, 0}}, 
 			{ "vn_prop_drink_02", 					{ 0, 0, 0, 0}}, 
@@ -658,7 +645,7 @@ class vn_whitelisted_arsenal_loadouts
 			{ "vn_mpu_t_mag", 						{-1, 0, 0,-1}}, 
 			{ "vn_mk1_udg_mag", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_item_lighter_01", 				{ 0, 0, 0,-1}}, 
-//			{ "vn_b_item_cigs_01", 					{ 0,-1, 0,-1}}, 
+			{ "vn_b_item_cigs_01", 					{ 0,-1, 0,-1}}, 
 			{ "Chemlight_blue", 					{-1, 0, 0,-1}}, 
 			{ "Chemlight_green", 					{-1,-1, 0,-1}}, 
 			{ "Chemlight_red", 						{ 0,-1,-1,-1}}, 
@@ -728,16 +715,6 @@ class vn_whitelisted_arsenal_loadouts
 			//1.1 Content
 			{ "vn_b_prop_camera_01", 				{-1,-1,-1, 0}}, 
 			//---
-			
-/////////////////SOG CIGARS/////////////////////////////////////////////////////////////////////////////////////////
-			{ "immersion_cigs_cigar0",				{ 0, 0, 0, 0}},
-			{ "immersion_cigs_cigar1",				{ 0, 0, 0, 0}},
-			{ "immersion_cigs_cigar2",				{ 0, 0, 0, 0}},
-			{ "immersion_cigs_cigar3",				{ 0, 0, 0, 0}},
-			{ "immersion_cigs_cigar4",				{ 0, 0, 0, 0}},
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-			
-			
 			//Facewear
 			{ "G_Aviator", 							{ 0, 0, 0, 0}}, 
 			{ "G_Bandanna_aviator", 				{-1, 0, 0,-1}}, 
@@ -1426,7 +1403,6 @@ class vn_whitelisted_arsenal_loadouts
 			{ "vn_b_pack_trp_03_02", 				{-1, 0, 0,-1}}, 
 			{ "vn_b_pack_trp_04", 					{-1, 0, 0,-1}}, 
 			{ "vn_b_pack_trp_04_02", 				{-1, 0, 0,-1}},
-			{ "vn_b_pack_trp_04_02_m16_pl",			{-1, 0, 0,-1}},
 			{ "vn_c_pack_01", 						{ 0,-1, 0,-1}}, 
 			{ "vn_c_pack_02", 						{ 0,-1, 0,-1}}, 
 			{ "vn_o_pack_01", 						{ 0,-1,-1,-1}}, 

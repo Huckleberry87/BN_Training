@@ -22,8 +22,6 @@ private _other_messages = [
     "7th Cav: Air cavalry based unit that focuses on rapid and mobile assaults, using Heuy's, Chinhooks, and Cayuse's with the occasional use of mechanized infantry.",
     "7th Cav: We are the jack of all trades and Master of one, that being Air Assault.",
     "7th Cav: We get called in to be the Spearhead of an assault or the Reinforcements for one.",
-    //"Montagnards: Elite indigenous forces that served with MACV-SOG on Spike and Recon teams throughout the Vietnam war.",
-    //"Montagnards: A french term for mountain people and a blanket term used to describe many indigenous tribes.",
     // bn specific
     "Dac Cong: Been captured? Try to escape the tunnels and get rescued. Respawning is for cowards!",
     "Dac Cong: Been captured? Escape and grab a shovel... You're going to need it.",
@@ -83,8 +81,11 @@ private _other_messages = [
     // "Sites: At Radar sites you need to destroy all the SA2 / Radar installations.",
     "Sites: At HQ sites you need to destroy all the supply crates.",
     "Sites: At Factory sites you need to destroy the large shipping container.",
-    "Radio Tap: Radio sets at certain sites can be wire-tapped to reveal up to three other sites (need wiretap kit and explosives role).",
-    "Radio Tap: Wiretapping radio sets at sites *does not guarantee* you will reveal all AO sites. Find the intel documents to be sure!",
+    "Radio Tap: Radio sets at certain sites can be wire-tapped to reveal up to three other sites (need wiretap kit).",
+    "Radio Tap: Wiretapping radio sets at sites can now reveal all AO sites. But the locations are less accurate than the intel.",
+    "Camps: Watch out for traps at campsites ...",
+    "Camps: Mine Detectors have a 15m detection radius while Trap Kits only have a 5m detection radius. Morale of the story: use Mine Detectors!",
+    "Camps: Always remember to turn on your Mine Detector before you step off!",
     // misc
     "Be a bro.",
     "Be a bro, be like John the GI.",

@@ -10,24 +10,23 @@ class Header
 {
 	gameType = "mikefrc";
 	minPlayers = 1;
-	maxPlayers = 40; //Do not exceed 32 players, as it begins to degrade balance and performance.
+	maxPlayers = 91; //Do not exceed 32 players, as it begins to degrade balance and performance.
 };
 respawn = "BASE";
-respawnDelay = 10;
+respawnDelay = 20;
 respawnDialog = 0;
 respawnButton = 1;
 respawnOnStart = -1;
 respawnTemplates[] = { "MenuPosition" };
 onPauseScript = "";
-onLoadMission = QUOT(Bro-Nation Training (Mike Force VN_MF_VERSION));
-OnLoadIntro = "Welcome to Bro-Nation";
-loadScreen = "images\BN.jpg";
+onLoadMission = QUOT(Mike Force (VN_MF_VERSION));
+OnLoadIntro = "Welcome to Mike Force";
+loadScreen = "\vn\missions_f_vietnam\data\img\mikeforce\mission.jpg";
 OnLoadIntroTime = 0;
 OnLoadMissionTime = 0;
-briefingName = QUOT(Bro-Nation Training);
-onLoadName = QUOT(Bro-Nation Training);
-overviewPicture = "images\BN.jpg";
-author = "Dirt and Huckleberry";
+briefingName = QUOT(Mike Force (VN_MF_VERSION));
+onLoadName = QUOT(Mike Force (VN_MF_VERSION));
+overviewPicture = "\vn\missions_f_vietnam\data\img\mikeforce\mission.jpg";
 
 disabledAI = 1;
 scriptedPlayer = 0;
@@ -69,8 +68,8 @@ skipLobby = 0;
 
 corpseManagerMode = 1;
 corpseLimit = 10;
-corpseRemovalMinTime = 360;
-corpseRemovalMaxTime = 1200;
+corpseRemovalMinTime = 1200;
+corpseRemovalMaxTime = 3600;
 
 wreckManagerMode = 0;
 wreckLimit = 2;
@@ -158,11 +157,3 @@ use_paradigm_init = 1;
 
 // VN HAM init
 #include "config\init.hpp"
-
-// EnableGPS
-enableGPS = 1;
-
-// CODELOCK
-#include "itsAebian\CodeLock\dialog\nhcl_defines.hpp"
-#include "itsAebian\CodeLock\dialog\nhcl_control.hpp"
-

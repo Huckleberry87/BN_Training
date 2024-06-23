@@ -2,10 +2,10 @@ class ParaWelcomeScreen {
     version = QUOT(VN_MF_VERSION);
 
     class Welcome {
-        title = "Welcome to Bro-Nation Training Center";
+        title = "Welcome to Mike Force";
         /*content = "Structured Text Content";*/
 		content[] = {
-			"<t align='center' size='1.5'>Welcome to Bro-Nation Training Center!</t>",
+			"<t align='center' size='1.5'>Welcome to Mike Force!</t>",
 			"<br/><br/>",
 			"<t align='center'>",
 			"This mission is constantly under development, so please keep an eye on the <a href='https://steamcommunity.com/sharedfiles/filedetails/?id=2477873447'>Steam Workshop</a> page for updates!",
@@ -18,7 +18,7 @@ class ParaWelcomeScreen {
 			"<br/><br/>",
 			"Join our discord here: https://discord.gg/bro-nation",
 			"<br/><br/>",
-			"Interested in joining a unit? Look here: https://discord.gg/RFTtr9aSs9",
+			"Interested in joining a unit? Look here: https://discord.gg/bro-nation",
 			"<br/><br/>",
 			"Have fun, and good luck. You'll need it.",
 			"</t>"

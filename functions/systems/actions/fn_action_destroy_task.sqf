@@ -14,43 +14,8 @@
 		call vn_mf_fnc_action_destroy_task;
 */
 
-[
-	player,											// Object the action is attached to
-	localize "STR_vn_mf_destroy_task",							// Title of the action
-	"custom\holdactions\holdAction_destroy_ca.paa",	// Idle icon shown on screen
-	"custom\holdactions\holdAction_destroy_ca.paa",	// Progress icon shown on screen
-	"(typeOf cursorObject in 
-	[
-	'O_MBT_02_arty_F',
-	'CUP_O_ZUBR_CSAT_T',
-	'O_APC_Wheeled_02_rcws_v2_F',
-	'O_Boat_Armed_01_hmg_F',
-	'CUP_O_T55_CSAT',
-	'O_static_AT_F',
-	'O_HMG_01_F',
-	'CUP_O_BMP2_CSAT',
-	'Land_PaperBox_open_full_F',
-	'O_HMG_01_high_F',
-	'rhsgref_ins_SPG9M',
-	'CamoNet_OPFOR_big_F',
-	'CUP_O_T72_CSAT',
-	'CargoNet_01_barrels_F',
-	'O_CargoNet_01_ammo_F',
-	'Land_Pod_Heli_Transport_04_fuel_F',
-	'Land_vn_b_prop_fueldrum_01',
-	'rhsusf_ammo_crate',
-	'rhs_weapons_crate_ak',
-	'O_Radar_System_02_F',
-	'CUP_O_UAZ_MG_CSAT',
-	'Land_WoodenBox_02_F',
-	'O_Heli_Light_02_dynamicLoadout_F',
-	'O_Heli_Attack_02_dynamicLoadout_F',
-	'Land_TentA_F',
-	'ShedSmall',
-	'B_Slingload_01_Ammo_F',
-	'CUP_O_ZSU23_CSAT',
-	'vn_b_ammobox_full_09',
-	'Misc_cargo_cont_net3',
+// stuff players can destroy
+private _classNames = [
 	'vn_o_nva_navy_static_zpu4',
 	'Land_vn_pavn_launchers',
 	'Land_vn_o_shelter_06',
@@ -70,7 +35,6 @@
 	'vn_o_nva_navy_static_mortar_type63',
 	'vn_o_nva_65_static_mortar_type53',
 	'vn_o_nva_static_d44_01',
-	'O_Mortar_01_F', 
 	'Land_vn_wf_vehicle_service_point_east',
 	'vn_sa2',
 	'vn_o_static_rsna75',
@@ -78,12 +42,32 @@
 	'vn_o_ammobox_02',
 	'Land_CratesWooden_F',
 	'vn_o_nva_navy_static_mortar_type63',
-	'Land_Pod_Heli_Transport_04_ammo_F',
-	'B_Slingload_01_Fuel_F',	
 	'vn_o_nva_65_static_mortar_type53',
 	'vn_o_nva_static_d44_01'
-	] 
-	&& player distance cursorObject < 10 && side player != east)",	// Condition for the action to be shown
+];
+
+// stuff players can destory formatted as a list
+private _objString = format ["['%1']", _classNames joinString "', '"];
+
+// all the checks formatted as a single string
+private _conditionToShowString = format ["(%1)",
+	[
+		format ["typeOf cursorObject in %1", _objString],
+		"player distance cursorObject < 10",
+		"side player != east",
+		// the vn_tunnel module sets this variable globally,
+		// meaning we should be able to inspect it locally as
+		// a player (holdAction is player local)
+		"(isNull (cursorObject getVariable ['vn_tunnel_tunnel_object', objNull]))"
+	] joinString " && "
+];
+
+[
+	player,											// Object the action is attached to
+	localize "STR_vn_mf_destroy_task",							// Title of the action
+	"custom\holdactions\holdAction_destroy_ca.paa",	// Idle icon shown on screen
+	"custom\holdactions\holdAction_destroy_ca.paa",	// Progress icon shown on screen
+	_conditionToShowString, // Condition for the action to be shown
 	"player distance cursorObject < 10",						// Condition for the action to progress
 	{},	// Code executed when action starts
 	{},	// Code executed on every progress tick

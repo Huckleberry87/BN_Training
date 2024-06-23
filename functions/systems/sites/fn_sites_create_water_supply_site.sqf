@@ -35,6 +35,11 @@ params ["_pos"];
 		_supplyMarker setMarkerText "Water Supply";
 		_supplyMarker setMarkerAlpha 0;
 		
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialTunnel_WaterSupply_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
 		[_tunnelWS, true] call para_s_fnc_enable_dynamic_sim;
 		
 		// 70% chance to spawn an ambush
@@ -45,9 +50,10 @@ params ["_pos"];
 		};
 
 		_siteStore setVariable ["markers", [_supplyMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["supplys", [_tunnelWS]];
 		_siteStore setVariable ["vehicles", [_tunnelWS]]; 
-		_siteStore setVariable ["objectsToDestroy", _tunnelWS];
+		_siteStore setVariable ["objectsToDestroy", [_tunnelWS]];
 	},
 	//Teardown condition check code
 	{
@@ -57,23 +63,11 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-		//Teardown when destroyed
-		(_siteStore getVariable "supplys" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		{
-			deleteVehicle _x;
-		} forEach (_siteStore getVariable "vehicles");
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

@@ -26,17 +26,25 @@ private _groupConfig = (missionConfigFile >> "gamemode" >> "teams" >> _team);
 private _groupNameFull = getText(_groupConfig >> "name");
 private _groupIcon = getText(_groupConfig >> "icon");
 private _groupName = getText(_groupConfig >> "shortname");
+private _groupDescription = getText(_groupConfig >> "description");
 
 // _display = uinamespace getvariable ["vn_tr_disp_selectTeam", DisplayNull];
 //set standard Missionname (Briefing Text)
-VN_TR_SELECTTEAM_TEAM_NAME_CTRL ctrlSetStructuredText parsetext _groupNameFull;
+
+// @dijksterhuis: Disabled for UI redesign
+// VN_TR_SELECTTEAM_TEAM_NAME_CTRL ctrlSetStructuredText parsetext _groupNameFull;
+
 //Img on the lext side
 VN_TR_SELECTTEAM_TEAM_LOGO_CTRL ctrlSetText _groupIcon;
+
+// left hand side text descriptions
+VN_TR_SELECTTEAM_TEAM_DESC_CTRL ctrlSetStructuredText parsetext _groupNameFull;
+VN_TR_SELECTTEAM_TEAM_TEXT_CTRL ctrlSetStructuredText parsetext _groupDescription;
 
 private _acceptButtonEnabled = false;
 private _uid = getPlayerUID player;
 
-if(_team in ["MikeForce", "ACAV", "GreenHornets", "SpikeTeam", "MACV"])then {
+if(_team in ["MikeForce", "ACAV", "GreenHornets", "SpikeTeam"])then {
 	_acceptButtonEnabled = true;
 } else {
 	private _teamArray = missionNamespace getVariable [format["whitelist_%1", _team], []];
@@ -44,6 +52,12 @@ if(_team in ["MikeForce", "ACAV", "GreenHornets", "SpikeTeam", "MACV"])then {
 
 	if(_uid in _teamArray) then { _acceptButtonEnabled = true; };
 	if(_uid in _dodArray) then { _acceptButtonEnabled = true; };
+};
+
+if (_acceptButtonEnabled) then {
+	VN_TR_SELECTTEAM_TEAM_TEXT_BOTTOM_CTRL ctrlSetStructuredText parsetext "You can play as this team.";
+} else {
+	VN_TR_SELECTTEAM_TEAM_TEXT_BOTTOM_CTRL ctrlSetStructuredText parsetext "You cannot play as this team. Visit discord.gg/bro-nation to find out how to apply.";
 };
 
 VN_TR_SELECTTEAM_ACCEPT_CTRL ctrlEnable _acceptButtonEnabled;
@@ -55,7 +69,7 @@ VN_TR_SELECTTEAM_TEAM_PLAYERCOUNT_CTRL ctrlSetStructuredText parsetext format["A
 
 //DISABLED, can easily be re-enabled, if we want to change the text on the left side too.
 /*
-_text = composeText ["Welcome to the Bro-Nation Training Center.", lineBreak, "Utilize the BNTC to hone your skills for the battlefield."];
+_text = composeText ["The Viet Cong controls this province.", lineBreak, "Your Mobile Strike Force must take control of the populace and destroy the Viet Cong"];
 VN_TR_SELECTTEAM_TEAM_DESC_CTRL ctrlSetStructuredText _text;
 
 _text = composeText [

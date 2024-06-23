@@ -62,10 +62,19 @@ params ["_pos"];
 			(_x isKindOf "StaticWeapon" || _x isKindOf "Building" || _x isKindOf "House" || _x isKindOf "LandVehicle")
 		};
 
-		_hqObjects apply {
-			if(typeOf _x in _objectTypesToDestroy + _objectTypesForDynamicSim || [_x] call _fnc_dynSimKindOfChecker) then {
-				[_x, true] call para_s_fnc_enable_dynamic_sim;
-			};
+		// normalise z-coord and up vector for vehicles, static weapons, weapon creates and the intel associated objects
+		_hqObjects select {typeOf _x in _objectTypesToDestroy || _x isKindOf "StaticWeapon" || _x isKindOf "LandVehicle"} apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+		};
+
+		// keep an eye on anything we definitely don't want to fall under the floor
+		_hqObjects select {typeOf _x in _objectTypesToDestroy || _x isKindOf "StaticWeapon"} apply {
+			[_x] call vn_mf_fnc_sites_object_zfixer_add_object;
+		};
+
+		// enable dynamic sim for a bunch of stuff
+		_hqObjects select {typeOf _x in _objectTypesToDestroy + _objectTypesForDynamicSim || [_x] call _fnc_dynSimKindOfChecker} apply {
+			[_x, true] call para_s_fnc_enable_dynamic_sim;
 		};
 
 		private _intel = _hqObjects select {typeOf _x == "Land_Map_unfolded_F"};
@@ -87,6 +96,11 @@ params ["_pos"];
 		_hqMarker setMarkerText "HQ";
 		_hqMarker setMarkerAlpha 0;
 
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialHQ_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
 		private _hqRespawnMarker = createMarker [format ["dc_respawn_adhoc_%1", _siteId], _markerPos];
 		_hqRespawnMarker setMarkerType "o_hq";
 		_hqRespawnMarker setMarkerAlpha 0;
@@ -98,6 +112,7 @@ params ["_pos"];
 		vn_dc_adhoc_respawns pushBack [_hqRespawnMarker,_respawnID];
 		_siteStore setVariable ["aiObjectives", _objectives];
 		_siteStore setVariable ["markers", [_hqMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["vehicles", _hqObjects]; 
 		_siteStore setVariable ["objectsToDestroy", _objectsToDestroy];
 	},
@@ -109,26 +124,11 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-
-		(_siteStore getVariable "objectsToDestroy" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		private _objectsToDestroy = _siteStore getVariable "objectsToDestroy";
-		private _respawnToDelete = _siteStore getVariable "respawnPointsDC";
-
-		{
-			deleteVehicle _x;
-		} forEach _objectsToDestroy;
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		// release AI from associated objectives
-		// note -- AI can vanish in front of players when this is executed
-		_siteStore getVariable "aiObjectives" apply {[_x] call para_s_fnc_ai_obj_finish_objective};
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

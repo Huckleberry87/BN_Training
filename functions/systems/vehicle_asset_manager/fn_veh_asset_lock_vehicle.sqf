@@ -21,7 +21,7 @@ params ["_id"];
 private _vehicle = [_id] call vn_mf_fnc_veh_asset_get_by_id select struct_veh_asset_info_m_vehicle;
 
 //Prevent locking if a player is within 10 (?) metres
-if (allPlayers inAreaArray [getPos _vehicle, 100, 100] isNotEqualTo [] || _vehicle getVariable ["vn_mf_g_veh_asset_locked", false]) exitWith {};
+if (allPlayers inAreaArray [getPos _vehicle, 10, 10] isNotEqualTo [] || _vehicle getVariable ["vn_mf_g_veh_asset_locked", false]) exitWith {};
 
 [_vehicle, true] remoteExec ["lockInventory", 0];
 [_vehicle, "LOCKED"] remoteExec ["setVehicleLock", _vehicle];

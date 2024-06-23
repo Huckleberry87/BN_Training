@@ -662,7 +662,7 @@ class PressCorp
         vn_artillery = false;
         harassable = false;
         scout = false;
-        increasedBuildRate = true;
+        increasedBuildRate = false;
     };
 
     //Function Calls on team Join

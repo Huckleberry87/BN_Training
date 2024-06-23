@@ -1,139 +1,115 @@
-zone_sofia[] = {
-	{"zone_paros", "connector_sofia_paros"},
-	{"zone_kalochori", "connector_sofia_kalochori"}
+zone_ban_hoang[] = {
+	{"zone_hue", "connector_ban_hoang_hue"},
+	{"zone_saigon", "connector_ban_hoang_saigon"},
+	{"zone_da_nang", "connector_ban_hoang_da_nang"}
 };
 
-zone_paros[] = {
-	{"zone_rodopoli", "connector_paros_rodopoli"}
+zone_ba_ria[] = {
+	{"zone_saigon", "connector_ba_ria_saigon"},
+	{"zone_cu_chi", "connector_ba_ria_cu_chi"}
 };
 
-zone_kalochori[] = {
-	{"zone_rodopoli", "connector_kalochori_rodopoli"}
+zone_saigon[] = {
+	{"zone_can_tho", "connector_saigon_can_tho"},
+	{"zone_soc_trang", "connector_saigon_soc_trang"}
 };
 
-zone_rodopoli[] = {
-	{"zone_charkia", "connector_rodopoli_charkia"},
-	{"zone_anthrakia", "connector_rodopoli_anthrakia"},
-	{"zone_almyra", "connector_rodopoli_almyra"}
+zone_soc_trang[] = {
+	{"zone_phu_quoc", "connector_soc_trang_phu_quoc"},
+	{"zone_fsb_quan_loi", "connector_soc_trang_quan_loi"}
 };
 
-zone_charkia[] = {
-	{"zone_pyrgos", "connector_charkia_pyrgos"},
-	{"zone_dorida", "connector_charkia_dorida"}
+zone_cu_chi[] = {
+	{"zone_can_tho", "connector_cu_chi_can_tho"},
+	{"zone_a_shau_valley", "connector_cu_chi_a_shau_valley"}
 };
 
-zone_pyrgos[] = {
-	{"zone_chalkeia", "connector_pyrgos_chalkeia"}
+zone_can_tho[] = {
+	{"zone_fsb_quan_loi", "connector_can_tho_quan_loi"}
 };
 
-zone_dorida[] = {
-	{"zone_chalkeia", "connector_dorida_chalkeia"}
+zone_phu_quoc[] = {
+	{"zone_lumphat", "connector_phu_quoc_lumphat"},
+	{"zone_dharma", "connector_phu_quoc_dharma"}
 };
 
-zone_chalkeia[] = {
-	{"zone_panagia", "connector_chalkeia_panagia"}
+zone_lumphat[] = {
+	{"zone_phu_quoc", "connector_lumphat_phu_quoc"},
+	{"zone_attapeu", "connector_lumphat_attapeu"},
+	{"zone_sihanoukville", "connector_lumphat_sihanoukville"},
+	{"zone_san_bay_ban", "connector_lumphat_san_bay_ban"}
 };
 
-zone_panagia[] = {
-	{"zone_selakano", "connector_panagia_selakano"},
-	{"zone_feres", "connector_panagia_feres"}
+zone_fsb_quan_loi[] = {
+	{"zone_lumphat", "connector_quan_loi_lumphat"},
+	{"zone_a_shau_valley", "connector_quan_loi_a_shau_valley"}
 };
 
-zone_almyra[] = {
-	{"zone_koroni", "connector_almyra_koroni"}
+zone_a_shau_valley[] = {
+	{"zone_fsb_quan_loi", "connector_a_shau_valley_quan_loi"},
+	{"zone_da_krong", "connector_a_shau_valley_khe_sanh"},
+	{"zone_khe_gio_valley", "connector_a_shau_valley_khe_gio_valley"}
 };
 
-zone_koroni[] = {
-	{"zone_pefkas", "connector_koroni_pefkas"},
-	{"zone_lakka", "connector_koroni_lakka"}
+zone_khe_gio_valley[] = {
+	{"zone_hue", "connector_khe_gio_valley_hue"},
+	{"zone_da_krong", "connector_khe_gio_valley_khe_sanh"},
+	{"zone_hai_phong", "connector_khe_gio_valley_hanoi_docks"}
 };
 
-zone_pefkas[] = {
-	{"zone_frini", "connector_pefkas_frini"},
-	{"zone_galati", "connector_pefkas_galati"}
+zone_hai_phong[] = {
+	{"zone_hanoi_city", "connector_hanoi_docks_hanoi_city"}
 };
 
-zone_frini[] = {
-	{"zone_powerplant", "connector_frini_strigla"}
+zone_hanoi_city[] = {
+	{"zone_gia_lam_airbase", "connector_hanoi_city_gia_lam_airbase"},
+	{"zone_ha_long_navy_base", "connector_hanoi_city_ha_long_navy_base"}
 };
 
-zone_galati[] = {
-	{"zone_powerplant", "connector_galati_powerplant"},
-	{"zone_syrta", "connector_galati_syrta"}
+zone_hue[] = {
+	{"zone_khe_gio_valley", "connector_hue_khe_gio_valley"},
+	{"zone_fob_mai_loc", "connector_hue_fob_mai_loc"}
 };
 
-zone_powerplant[] = {
-	{"zone_oreokastro", "connector_powerplant_oreokastro"}
+zone_da_krong[] = {
+	{"zone_attapeu", "connector_khe_sanh_attapeu"},
+	{"zone_bru_village", "connector_khe_sanh_bru_village"}
 };
 
-zone_syrta[] = {
-	{"zone_oreokastro", "connector_syrta_oreokastro"},
-	{"zone_kore", "connector_syrta_kore"}
+zone_attapeu[] = {
+	{"zone_plain_of_jars", "connector_attapeu_plain_of_jars"},
+	{"zone_mu_gia_pass", "connector_attapeu_mu_gia_pass"}
 };
 
-zone_lakka[] = {
-	{"zone_agios_dionysios", "connector_lakka_agios_dionysios"},
-	{"zone_alikampos", "connector_lakka_alikampos"},
-	{"zone_edessa", "connector_lakka_edessa"}
+zone_mu_gia_pass[] = {
+	{"zone_va_cang", "connector_mu_gia_pass_va_cang"},
+	{"zone_thud_ridge", "connector_mu_gia_pass_thud_ridge"}
 };
 
-zone_edessa[] = {
-	{"zone_neochori", "connector_edessa_neochori"}
+zone_va_cang[] = {
+	{"zone_nodal_lho", "connector_va_cang_nodal_lho"}
 };
 
-zone_neochori[] = {
-	{"zone_alikampos", "connector_neochori_alikampos"},
-	{"zone_poliakko", "connector_neochori_poliakko"}
+zone_thud_ridge[] = {
+	{"zone_son_tay", "connector_thud_ridge_son_tay"}
 };
 
-zone_alikampos[] = {
-	{"zone_agios_dionysios", "connector_alikampos_agios_dionysios"},
-	{"zone_therisa", "connector_alikampos_therisa"}
+zone_ha_long_navy_base[] = {
+	{"zone_son_tay", "connector_ha_long_navy_base_son_tay"},
+	{"zone_ling_ho", "connector_ling_ho"}
 };
 
-zone_therisa[] = {
-	{"zone_vikos", "connector_therisa_vikos"}
+zone_dharma[] = {
+	{"zone_sihanoukville", "connector_dharma_sihanoukville"}
 };
 
-zone_vikos[] = {
-	{"zone_zaros", "connector_vikos_zaros"}
+zone_sihanoukville[] = {
+	{"zone_dharma", "connector_sihanoukville_dharma"},
+	{"zone_san_bay_ban", "connector_sihanoukville_san_bay_ban"}
 };
 
-zone_zaros[] = {
-	{"zone_panochori", "connector_zaros_panochori"}
-};
+zone_san_bay_ban[] = {};
 
-zone_panochori[] = {
-	{"zone_neri", "connector_panochori_neri"}
-};
+zone_da_nang[] = {};
 
-zone_neri[] = {
-	{"zone_kavala", "connector_panochori_neri"}
-};
-
-zone_agios_dionysios[] = {
-	{"zone_kore", "connector_agios_dionysios_kore"},
-	{"zone_agia_stemma", "connector_agios_dionysios_agia_stemma"}
-};
-
-zone_kore[] = {
-	{"zone_negades", "connector_kore_negades"},
-	{"zone_agia_stemma", "connector_kore_agia_stemma"}
-};
-
-zone_negades[] = {
-	{"zone_aggelochori", "connector_negades_aggelochori"}
-};
-
-zone_aggelochori[] = {
-	{"zone_kavala", "connector_aggelochori_kavala"}
-};
-
-zone_agia_stemma[] = {
-	{"zone_zaros", "connector_agia_stemma_zaros"}
-};
-
-zone_oreokastro[] = {};
-zone_kavala[] = {};
-zone_selakano[] = {};
-zone_peres[] = {};
+zone_ling_ho[] = {};

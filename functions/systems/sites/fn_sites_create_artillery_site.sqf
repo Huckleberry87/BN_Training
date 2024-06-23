@@ -75,33 +75,45 @@ params ["_pos"];
 			typeOf _x in _objectTypesToDestroy;
 		};
 
-		private _staticWeaponsOther = _artyObjs select {
-			!(typeOf _x in _objectTypesToDestroy) && _x isKindOf "StaticWeapon";
-		};
-
 		private _markerPos = _spawnPos getPos [10 + random 20, random 360];
 		private _artilleryMarker = createMarker [format ["Artillery_%1", _siteId], _markerPos];
 		_artilleryMarker setMarkerType "o_art";
 		_artilleryMarker setMarkerText "Arty";
 		_artilleryMarker setMarkerAlpha 0;
 
+		private _partialMarkerPos = _spawnPos getPos [10 + random 40, random 360];
+		private _markerPartial = createMarker [format ["PartialArtillery_%1", _siteId], _partialMarkerPos];
+		_markerPartial setMarkerType "o_unknown";
+		_markerPartial setMarkerAlpha 0;
+
 		_objectsToDestroy apply {
 
 			// Disable weapon dissassembly as statics aren't deleted properly
 			// when disassembled, breaking the site/mission.
-			[_x, true] call para_s_fnc_enable_dynamic_sim;
 			_x enableWeaponDisassembly false;
 
 			// Whitelist arty objects to discourage blufor players from
 			// stealing/moving mission critical objects and blocking progress
 			[_x, ["DacCong"]] call vn_mf_fnc_lock_vehicle_to_teams;
 			vn_mf_dc_assets pushBack _x;
-
 		};
 
-		_staticWeaponsOther apply {[_x, true] call para_s_fnc_enable_dynamic_sim};
+		// includes all the objects to destroy for arty sites (mortars)
+		_artyObjs select {_x isKindOf "StaticWeapon"} apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+			[_x] call vn_mf_fnc_sites_object_zfixer_add_object;
+			[_x, true] call para_s_fnc_enable_dynamic_sim;
+		};
+
+		// Building Kind of includes bushes and the DC wallfoliage fences
+		_artyObjs select {_x isKindOf "Building"} apply {
+			[_x] call vn_mf_fnc_sites_utils_normalise_object_placement;
+			[_x, true] call para_s_fnc_enable_dynamic_sim;
+		};
+
 		_siteStore setVariable ["aiObjectives", [[_spawnPos, 1, 1] call para_s_fnc_ai_obj_request_defend]];
 		_siteStore setVariable ["markers", [_artilleryMarker]];
+		_siteStore setVariable ["partialMarkers", [_markerPartial]];
 		_siteStore setVariable ["objectsToDestroy", _objectsToDestroy];
 	},
 	//Teardown condition check code
@@ -112,23 +124,11 @@ params ["_pos"];
 	//Teardown condition
 	{
 		params ["_siteStore"];
-		//Teardown when all guns destroyed
-		(_siteStore getVariable "objectsToDestroy" findIf {alive _x} == -1)
+		[_siteStore] call vn_mf_fnc_sites_utils_std_check_teardown;
 	},
 	//Teardown code
 	{
 		params ["_siteStore"];
-
-		{
-			deleteMarker _x;
-		} forEach (_siteStore getVariable "markers");
-
-		{
-			deleteVehicle _x;
-		} forEach ((_siteStore getVariable "objectsToDestroy"));
-
-		{
-			[_x] call para_s_fnc_ai_obj_finish_objective;
-		} forEach (_siteStore getVariable ["aiObjectives", []]);
+		[_siteStore] call vn_mf_fnc_sites_utils_std_teardown;
 	}
 ] call vn_mf_fnc_sites_create_site;

@@ -4,15 +4,15 @@
     Public: No
     
     Description:
-        Called in onLoad section of the Display.
-        Set's the text for the currently active Team in the Team-selection dialog.
+		Called in onLoad section of the Display.
+		Set's the text for the currently active Team in the Team-selection dialog.
     
     Parameter(s): none
     
     Returns: nothing
     
     Example(s):
-        [] call vn_mf_fnc_tr_selectTeam_init;
+		[] call vn_mf_fnc_tr_selectTeam_init;
 */
 
 disableSerialization;
@@ -21,18 +21,24 @@ disableSerialization;
 
 VN_TR_SELECTTEAM_TEAM_LOGO_CTRL ctrlSetText "";
 
-// _text = composeText ["Welcome to the Bro-Nation Training Center", lineBreak, "Utilize the BNTC to hone your skills for the battlefield."];
-VN_TR_SELECTTEAM_TEAM_DESC_CTRL ctrlSetStructuredText parseText "TRAINING INFORMATION</t>";
+// _text = composeText ["The Viet Cong controls this province.", lineBreak, "Your Mobile Strike Force must take control of the populace and destroy the Viet Cong"];
+// VN_TR_SELECTTEAM_TEAM_DESC_CTRL ctrlSetStructuredText parseText "MISSION STRATEGY</t>";
 
 _text = "
-Welcome to the Bro-Nation Training Center. Utilize the BNTC to hone your skills for the battlefield.<br/><br/>All roads lead from MACV; Most ranges can be accessed from MACV teleporters.<br/>
-For more information on Bro-Nation and Whitelisted units, join our Discord at https://discord.gg/bro-nation!<br/>
+The Viet Cong controls this province.<br/>
+Your Mobile Strike Force must take control of the populace and destroy the Viet Congs jungle sanctuaries.<br/>
 <br/>
-TRAINING SERVER RULES
-- When using any training range, active AO, or your own bespoke training area, you must mark your training location with a red box and 'RANGE IS HOT - TRAINING IN PROGRESS'. Put in side chat with what range is in use (ex: 'TANK RANGE 2 IS HOT - TRAINING IN PROGRESS').<br/>
-- When finished, clean up your map marks and mark in side chat that range is cold.<br/>
-- If using the various ranges for personal use, you MUST make way for any organized trainings.<br/>
-- Utilize proper channels to communicate with other groups during training to avoid incidents.<br/>
-";
+- There are 10 zones to capture and hold.<br/>
+- You can operate in 2 zones at the same time.<br/>
+There are 4 teams:<br/>
+- Mike Force; ACAV; Green Hornets; and Spike Team.<br/>
+- Teams work together on Primary Tasks to help capture a zone.<br/>
+- Your team - (insert name here) - has unique Team Tasks which help capture a zone. Change teams in the lobby.<br/>
+- You can get support from other teams with Request Support (Hyperlink?).<br/>
+- Your team can complete Support Tasks for the other teams.<br/>
+- Completing Team and Support Tasks helps you gain rank.<br/>
+- Higher ranks can access improved weapons, equipment and vehicles.<br/>
+- Working together as a unified force will secure the province more quickly.<br/>
+- So choose your team. Good luck out there, you’re going to need it!</t>";
 
-VN_TR_SELECTTEAM_TEAM_TEXT_CTRL ctrlSetStructuredText parseText _text;
+// VN_TR_SELECTTEAM_TEAM_TEXT_CTRL ctrlSetStructuredText parseText _text;

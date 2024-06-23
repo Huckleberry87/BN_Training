@@ -23,14 +23,18 @@ call vn_mf_fnc_server_init_backend;
 call para_s_fnc_init_whitelist;
 ["update_whitelist", para_s_fnc_init_whitelist, [], 120] call para_g_fnc_scheduler_add_job;
 
+// update curator whitelist, every 5 minutes
 call para_s_fnc_init_curators;
 ["update_curators", para_s_fnc_init_curators, [], 300] call para_g_fnc_scheduler_add_job;
+
+// update objects curators can edit, every 10 seconds
+[10] call para_s_fnc_init_curators_update_objects_job;
 
 call para_s_fnc_init_dopamine;
 ["dopamine_hit", para_s_fnc_init_dopemine, [], 300] call para_g_fnc_scheduler_add_job;
 
-["sysmsg_admin", vn_mf_fnc_sysmsg_print_admin, [], 600] call para_g_fnc_scheduler_add_job;
-["sysmsg_generic", vn_mf_fnc_sysmsg_print_others, [], 907] call para_g_fnc_scheduler_add_job;
+["sysmsg_admin", vn_mf_fnc_sysmsg_print_admin, [], 3000] call para_g_fnc_scheduler_add_job;
+["sysmsg_generic", vn_mf_fnc_sysmsg_print_others, [], 6666] call para_g_fnc_scheduler_add_job;
 
 private _gamemode_config = (missionConfigFile >> "gamemode");
 
@@ -56,7 +60,7 @@ publicVariable "para_l_buildables_require_vehicles";
 vn_mf_dawnLength = ["dawn_length", 1200] call BIS_fnc_getParamValue;
 vn_mf_dayLength = ["day_length", 9000] call BIS_fnc_getParamValue;
 vn_mf_duskLength = ["dusk_length", 1200] call BIS_fnc_getParamValue;
-vn_mf_nightLength = ["night_length", 9000] call BIS_fnc_getParamValue;
+vn_mf_nightLength = ["night_length", 1800] call BIS_fnc_getParamValue;
 
 //Set whether stamia is enabled
 vn_mf_param_enable_stamina = (["param_enable_stamina", 0] call BIS_fnc_getParamValue) > 0;
@@ -320,6 +324,10 @@ diag_log "VN MikeForce: Initialising AI Behaviour";
 diag_log "VN MikeForce: Initialising Zones";
 // Initialise the zones
 [] call vn_mf_fnc_zones_init;
+
+diag_log "VN MikeForce: Initialising Sites Object Z-Fixer";
+// stop mortars etc. falling under terrain
+[] call vn_mf_fnc_sites_object_zfixer_init;
 
 diag_log "VN MikeForce: Initialising Sites";
 // Initialise sites - must be done after zones.
